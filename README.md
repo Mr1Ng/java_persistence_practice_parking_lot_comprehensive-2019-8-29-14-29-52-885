@@ -1,3 +1,31 @@
+# MockMvc测试注解：
+### @WebAppConfiguration
+表明该类会使用web应用程序的默认根目录来载入ApplicationContext, 默认的更目录是"src/main/webapp", 如果需要更改这个更目录可以修改该注释的value值。
+
+### @RunWith
+使用 Spring-Test 框架;在使用所有注释前必须使用@RunWith(SpringJUnit4ClassRunner.class),让测试运行于Spring测试环境。
+
+### @ContextConfiguration(location = ):
+指定需要加载的spring配置文件的地址
+
+### @Mock: 
+需要被Mock的对象
+
+### @Transactional：
+不是必须的，是和@TestExecutionListeners中的TransactionalTestExecutionListener.class配合使用，用于保证插入的数据库中的测试数据，在测试完后，将插入的数据给删除掉，保证数据库的干净。如果没有显示的指定@Transactional，那么插入到数据库中的数据就是真实数据。
+
+### @InjectMocks: 
+需要将Mock对象注入的对象, 此处就是Controller
+
+### @Before: 
+在每次Test方法之前运行的方法,目前把登陆信息放到session中处理，以及初始化mockMvc。
+mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+
+### @Test：
+执行测试
+
+
+
 ## Requirement
 
 - Please forked this repo for practice
