@@ -24,6 +24,51 @@ mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 ### @Test：
 执行测试
 
+# Mybatis SQL 常用语句
+
+### SELECT
+查询语句是 MyBatis 中最常用的元素之一，光能把数据存到数据库中价值并不大，如果还能重新取出来才有用，多数应用也都是查询比修改要频繁。对每个插入、更新或删除操作，通常对应多个查询操作。这是 MyBatis 的基本原则之一，也是将焦点和努力放到查询和结果映射的原因。简单查询的 select 元素是非常简单的。比如：
+```
+<select
+  id="selectPerson"
+  parameterType="int"
+  parameterMap="deprecated"
+  resultType="hashmap"
+  resultMap="personResultMap"
+  flushCache="false"
+  useCache="true"
+  timeout="10000"
+  fetchSize="256"
+  statementType="PREPARED"
+  resultSetType="FORWARD_ONLY">
+  ```
+  
+  ### insert, update 和 delete
+  插入
+  ```
+  <insert id="insertAuthor">
+  insert into Author (id,username,password,email,bio)
+  values (#{id},#{username},#{password},#{email},#{bio})
+</insert>
+```
+更新
+```
+<update id="updateAuthor">
+  update Author set
+    username = #{username},
+    password = #{password},
+    email = #{email},
+    bio = #{bio}
+  where id = #{id}
+</update>
+```
+删除
+```
+<delete id="deleteAuthor">
+  delete from Author where id = #{id}
+</delete>
+```
+
 
 
 ## Requirement
